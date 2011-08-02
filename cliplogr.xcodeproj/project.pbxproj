@@ -1,0 +1,268 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		81531DF913E8C61B00507F78 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81531DF813E8C61B00507F78 /* UIKit.framework */; };
+		81531DFB13E8C61B00507F78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81531DFA13E8C61B00507F78 /* Foundation.framework */; };
+		81531DFD13E8C61B00507F78 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81531DFC13E8C61B00507F78 /* CoreGraphics.framework */; };
+		81531E0313E8C61B00507F78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81531E0113E8C61B00507F78 /* InfoPlist.strings */; };
+		81531E0613E8C61B00507F78 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81531E0513E8C61B00507F78 /* main.m */; };
+		81531E0913E8C61B00507F78 /* cliplogrAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81531E0813E8C61B00507F78 /* cliplogrAppDelegate.m */; };
+		81531E0C13E8C61B00507F78 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81531E0A13E8C61B00507F78 /* MainWindow.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		81531DF413E8C61B00507F78 /* cliplogr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cliplogr.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		81531DF813E8C61B00507F78 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		81531DFA13E8C61B00507F78 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		81531DFC13E8C61B00507F78 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		81531E0013E8C61B00507F78 /* cliplogr-Info.plist */ = {isa = PBXFileReference; path = "cliplogr-Info.plist"; sourceTree = "<group>"; };
+		81531E0213E8C61B00507F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		81531E0413E8C61B00507F78 /* cliplogr-Prefix.pch */ = {isa = PBXFileReference; path = "cliplogr-Prefix.pch"; sourceTree = "<group>"; };
+		81531E0513E8C61B00507F78 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		81531E0713E8C61B00507F78 /* cliplogrAppDelegate.h */ = {isa = PBXFileReference; path = cliplogrAppDelegate.h; sourceTree = "<group>"; };
+		81531E0813E8C61B00507F78 /* cliplogrAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cliplogrAppDelegate.m; sourceTree = "<group>"; };
+		81531E0B13E8C61B00507F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		81531DF113E8C61A00507F78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81531DF913E8C61B00507F78 /* UIKit.framework in Frameworks */,
+				81531DFB13E8C61B00507F78 /* Foundation.framework in Frameworks */,
+				81531DFD13E8C61B00507F78 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		81531DE913E8C61A00507F78 = {
+			isa = PBXGroup;
+			children = (
+				81531DFE13E8C61B00507F78 /* cliplogr */,
+				81531DF713E8C61B00507F78 /* Frameworks */,
+				81531DF513E8C61B00507F78 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		81531DF513E8C61B00507F78 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				81531DF413E8C61B00507F78 /* cliplogr.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		81531DF713E8C61B00507F78 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				81531DF813E8C61B00507F78 /* UIKit.framework */,
+				81531DFA13E8C61B00507F78 /* Foundation.framework */,
+				81531DFC13E8C61B00507F78 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		81531DFE13E8C61B00507F78 /* cliplogr */ = {
+			isa = PBXGroup;
+			children = (
+				81531E0713E8C61B00507F78 /* cliplogrAppDelegate.h */,
+				81531E0813E8C61B00507F78 /* cliplogrAppDelegate.m */,
+				81531E0A13E8C61B00507F78 /* MainWindow.xib */,
+				81531DFF13E8C61B00507F78 /* Supporting Files */,
+			);
+			path = cliplogr;
+			sourceTree = "<group>";
+		};
+		81531DFF13E8C61B00507F78 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				81531E0013E8C61B00507F78 /* cliplogr-Info.plist */,
+				81531E0113E8C61B00507F78 /* InfoPlist.strings */,
+				81531E0413E8C61B00507F78 /* cliplogr-Prefix.pch */,
+				81531E0513E8C61B00507F78 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		81531DF313E8C61A00507F78 /* cliplogr */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81531E0F13E8C61B00507F78 /* Build configuration list for PBXNativeTarget "cliplogr" */;
+			buildPhases = (
+				81531DF013E8C61A00507F78 /* Sources */,
+				81531DF113E8C61A00507F78 /* Frameworks */,
+				81531DF213E8C61A00507F78 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cliplogr;
+			productName = cliplogr;
+			productReference = 81531DF413E8C61B00507F78 /* cliplogr.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		81531DEB13E8C61A00507F78 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				ORGANIZATIONNAME = "St. Timothy";
+			};
+			buildConfigurationList = 81531DEE13E8C61A00507F78 /* Build configuration list for PBXProject "cliplogr" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 81531DE913E8C61A00507F78;
+			productRefGroup = 81531DF513E8C61B00507F78 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				81531DF313E8C61A00507F78 /* cliplogr */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		81531DF213E8C61A00507F78 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81531E0313E8C61B00507F78 /* InfoPlist.strings in Resources */,
+				81531E0C13E8C61B00507F78 /* MainWindow.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		81531DF013E8C61A00507F78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81531E0613E8C61B00507F78 /* main.m in Sources */,
+				81531E0913E8C61B00507F78 /* cliplogrAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		81531E0113E8C61B00507F78 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81531E0213E8C61B00507F78 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		81531E0A13E8C61B00507F78 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81531E0B13E8C61B00507F78 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		81531E0D13E8C61B00507F78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		81531E0E13E8C61B00507F78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		81531E1013E8C61B00507F78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "cliplogr/cliplogr-Prefix.pch";
+				INFOPLIST_FILE = "cliplogr/cliplogr-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		81531E1113E8C61B00507F78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "cliplogr/cliplogr-Prefix.pch";
+				INFOPLIST_FILE = "cliplogr/cliplogr-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		81531DEE13E8C61A00507F78 /* Build configuration list for PBXProject "cliplogr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81531E0D13E8C61B00507F78 /* Debug */,
+				81531E0E13E8C61B00507F78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81531E0F13E8C61B00507F78 /* Build configuration list for PBXNativeTarget "cliplogr" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81531E1013E8C61B00507F78 /* Debug */,
+				81531E1113E8C61B00507F78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 81531DEB13E8C61A00507F78 /* Project object */;
+}
