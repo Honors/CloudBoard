@@ -66,6 +66,21 @@ int popOutSlot = -1;
     }   
 }
 
+- (IBAction)copyItemClick {
+    //Copy clip to pasteboard
+    NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:popOutSlot-1 inSection:0]];
+    NSString *type = [[managedObject valueForKey:@"type"] description];
+    NSString *contents = [[managedObject valueForKey:@"contents"] description];
+    
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    if( [type isEqualToString:@"string"] )
+        [pasteboard setString:contents];
+    else {  //Image
+        UIImage *clip = [UIImage imageWithContentsOfFile:contents];
+        [pasteboard setImage:clip];
+    }
+}
+
 -(void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     
     [self dismissModalViewControllerAnimated:YES];

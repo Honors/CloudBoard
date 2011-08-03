@@ -29,5 +29,6 @@
 - (void)loginSubmitButton;
 - (IBAction)viewItemClick;
 - (IBAction)shareItemClick;
+- (IBAction)copyItemClick;
 
 @end
