@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import "LoginViewController.h"
 #import "TextDetailViewController.h"
+#import "ImageDetailViewController.h"
 #import "JSON.h"
 
 @interface RootViewController ()
@@ -23,24 +24,31 @@
 int popOutBool = 0;
 int popOutSlot = -1;
 
-- (void)loginSubmitButton {
-    NSLog(@"RootView was reached");
-    [self dismissModalViewControllerAnimated:YES];
-}
-
 - (IBAction)viewItemClick {
-    NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:popOutSlot-1 inSection:0]];
     NSString *type = [[managedObject valueForKey:@"type"] description];
     NSString *contents = [[managedObject valueForKey:@"contents"] description];
     
-    TextDetailViewController *tdvc = [[TextDetailViewController alloc]initWithNibName:@"TextDetailView" bundle:[NSBundle mainBundle]];    
-    [self presentModalViewController:tdvc animated:YES];
-    [tdvc initWithLink:@"google" andContents:contents];
-    [tdvc release];    
+    if( [type isEqualToString:@"string"] ) {
+        TextDetailViewController *tdvc = [[TextDetailViewController alloc]initWithNibName:@"TextDetailView" bundle:[NSBundle mainBundle]];    
+        [self presentModalViewController:tdvc animated:YES];
+        [tdvc initWithLink:@"google" andContents:contents];
+        [tdvc release];
+    }
+    else {  //Image
+        ImageDetailViewController *idvc = [[ImageDetailViewController alloc] initWithNibName:@"ImageDetailView" bundle:[NSBundle mainBundle]];
+        [self presentModalViewController:idvc animated:YES];
+        [idvc initWithLink:@"google" andContents:contents];
+        [idvc release];
+    }
 }
 
 - (IBAction)shareItemClick {
     if ([MFMailComposeViewController canSendMail]) {
+        
+        NSManagedObject *managedObject = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:popOutSlot-1 inSection:0]];
+        NSString *type = [[managedObject valueForKey:@"type"] description];
+        NSString *contents = [[managedObject valueForKey:@"contents"] description];
         
         MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
         mailViewController.mailComposeDelegate = self;

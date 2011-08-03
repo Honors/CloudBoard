@@ -56,6 +56,7 @@
 		81531F0313E8CCB000507F78 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81531EFF13E8CCB000507F78 /* MainWindow.xib */; };
 		81531F0413E8CCB000507F78 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81531F0113E8CCB000507F78 /* RootViewController.xib */; };
 		81531F0613E8D4DD00507F78 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81531F0513E8D4DD00507F78 /* MessageUI.framework */; };
+		81531F0913E8D9D700507F78 /* ImageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81531F0813E8D9D700507F78 /* ImageDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -123,6 +124,8 @@
 		81531F0013E8CCB000507F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "../../../../../Volumes/FLASH/Xcode/cliplogr xcode/cliplogr/en.lproj/MainWindow.xib"; sourceTree = "<group>"; };
 		81531F0213E8CCB000507F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "../../../../../Volumes/FLASH/Xcode/cliplogr xcode/cliplogr/en.lproj/RootViewController.xib"; sourceTree = "<group>"; };
 		81531F0513E8D4DD00507F78 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		81531F0713E8D9D700507F78 /* ImageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDetailViewController.h; sourceTree = "<group>"; };
+		81531F0813E8D9D700507F78 /* ImageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +209,8 @@
 				81531E9713E8C68E00507F78 /* polaroidFrame.png */,
 				81531E9813E8C68E00507F78 /* popover button (touch).png */,
 				81531E9913E8C68E00507F78 /* popover button.png */,
+				81531F0713E8D9D700507F78 /* ImageDetailViewController.h */,
+				81531F0813E8D9D700507F78 /* ImageDetailViewController.m */,
 				81531E9C13E8C68E00507F78 /* RootViewController.m */,
 				81531E9D13E8C68E00507F78 /* RootViewController.h */,
 				81531E9E13E8C68E00507F78 /* rowBG.png */,
@@ -363,6 +368,7 @@
 				81531EE913E8C68E00507F78 /* LoginViewController.m in Sources */,
 				81531EF113E8C68E00507F78 /* RootViewController.m in Sources */,
 				81531EF813E8C68E00507F78 /* TextDetailViewController.m in Sources */,
+				81531F0913E8D9D700507F78 /* ImageDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
