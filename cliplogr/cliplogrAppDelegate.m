@@ -9,6 +9,7 @@
 #import "cliplogrAppDelegate.h"
 #import "LoginViewController.h"
 #import "RootViewController.h"
+#import "FlurryAnalytics.h"
 
 @implementation cliplogrAppDelegate
 
@@ -25,6 +26,10 @@
 
 NSString *inURL = @"";
 
+void uncaughtExceptionHandler(NSException *exception) {
+    [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
+}
+
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url 
 {
     NSLog(@"URL: %@", url);
@@ -35,11 +40,13 @@ NSString *inURL = @"";
 {        
     
     self.window.rootViewController = self.navigationController;
-    [self.window makeKeyAndVisible];
+    [self.window makeKeyAndVisible];        
+      
+    NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
+    [FlurryAnalytics startSession:@"VAD6E14Q37SNL72V7T53"];
     
-    [navigationBar performSelector:@selector(setTintColor:)
-                        withObject:[UIColor blackColor]
-                        afterDelay:0.1];
+    UINavigationController *main = [[RootViewController alloc] navigationController];    
+    [FlurryAnalytics logAllPageViews:main];
     
     return YES;
 }

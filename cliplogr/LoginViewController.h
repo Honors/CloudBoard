@@ -9,10 +9,24 @@
 #import <Foundation/Foundation.h>
 
 
-@interface LoginViewController : UIViewController {
+@interface LoginViewController : UIViewController <UITextViewDelegate> {
+    IBOutlet UITextField *username;
+    IBOutlet UITextField *email;
+    IBOutlet UITextField *password; 
+    IBOutlet UILabel *alert; 
+    IBOutlet UILabel *linkDisplay;
     
+    IBOutlet UIButton *nextButton;
+    IBOutlet UIButton *finButton;
 }
 
-- (IBAction)loginSubmitButton;
+- (IBAction)SubmitButton;
+- (IBAction)SkipButton;
+- (IBAction)LoginButton;
+- (IBAction)finishButton;
+- (IBAction)nextButton;
+- (IBAction)exitTyping;
+
+- (void)saveLoginCreds: (NSString *)user : (NSString *)passwordNew;
 
 @end

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		810255DF13F6137C0042329E /* Clip_Log_Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 810255DE13F6137B0042329E /* Clip_Log_Icon.png */; };
+		8102560713F647170042329E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8102560613F647170042329E /* AudioToolbox.framework */; };
+		8102560A13F6E5380042329E /* LoginView4.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8102560813F6E5380042329E /* LoginView4.xib */; };
+		8102560B13F6E5380042329E /* Screenshot_LoginView4.png in Resources */ = {isa = PBXBuildFile; fileRef = 8102560913F6E5380042329E /* Screenshot_LoginView4.png */; };
 		81531DF913E8C61B00507F78 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81531DF813E8C61B00507F78 /* UIKit.framework */; };
 		81531DFB13E8C61B00507F78 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81531DFA13E8C61B00507F78 /* Foundation.framework */; };
 		81531DFD13E8C61B00507F78 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81531DFC13E8C61B00507F78 /* CoreGraphics.framework */; };
@@ -15,8 +19,6 @@
 		81531EA913E8C68E00507F78 /* 12-eye.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E1213E8C68E00507F78 /* 12-eye.png */; };
 		81531EAA13E8C68E00507F78 /* 28-star.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E1313E8C68E00507F78 /* 28-star.png */; };
 		81531EAB13E8C68E00507F78 /* 56-cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E1413E8C68E00507F78 /* 56-cloud.png */; };
-		81531EAC13E8C68E00507F78 /* backgroundCell.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E1513E8C68E00507F78 /* backgroundCell.png */; };
-		81531EAE13E8C68E00507F78 /* blueFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E1813E8C68E00507F78 /* blueFrame.png */; };
 		81531ED013E8C68E00507F78 /* cliplogr-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81531E6713E8C68E00507F78 /* cliplogr-Info.plist */; };
 		81531ED113E8C68E00507F78 /* cliplogr.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81531E6913E8C68E00507F78 /* cliplogr.xcdatamodeld */; };
 		81531ED213E8C68E00507F78 /* cliplogrAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81531E6C13E8C68E00507F78 /* cliplogrAppDelegate.m */; };
@@ -24,12 +26,8 @@
 		81531ED513E8C68E00507F78 /* edit drawer.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E7013E8C68E00507F78 /* edit drawer.png */; };
 		81531ED613E8C68E00507F78 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81531E7213E8C68E00507F78 /* InfoPlist.strings */; };
 		81531ED713E8C68E00507F78 /* FileUploadController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81531E7513E8C68E00507F78 /* FileUploadController.m */; };
-		81531ED813E8C68E00507F78 /* frame_v2.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E7613E8C68E00507F78 /* frame_v2.png */; };
-		81531ED913E8C68E00507F78 /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E7713E8C68E00507F78 /* frame.png */; };
 		81531EDA13E8C68E00507F78 /* glyphicons_152_new_window.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E7813E8C68E00507F78 /* glyphicons_152_new_window.png */; };
 		81531EDB13E8C68E00507F78 /* header.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E7913E8C68E00507F78 /* header.png */; };
-		81531EDC13E8C68E00507F78 /* header(2).png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E7A13E8C68E00507F78 /* header(2).png */; };
-		81531EDD13E8C68E00507F78 /* header(3).png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E7B13E8C68E00507F78 /* header(3).png */; };
 		81531EDE13E8C68E00507F78 /* ImageDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81531E7C13E8C68E00507F78 /* ImageDetailView.xib */; };
 		81531EE113E8C68E00507F78 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81531E8413E8C68E00507F78 /* NSObject+SBJSON.m */; };
 		81531EE213E8C68E00507F78 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 81531E8613E8C68E00507F78 /* NSString+SBJSON.m */; };
@@ -40,27 +38,40 @@
 		81531EE813E8C68E00507F78 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81531E9013E8C68E00507F78 /* LoginView.xib */; };
 		81531EE913E8C68E00507F78 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81531E9213E8C68E00507F78 /* LoginViewController.m */; };
 		81531EEB13E8C68E00507F78 /* noise.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E9413E8C68E00507F78 /* noise.png */; };
-		81531EED13E8C68E00507F78 /* polaroidFrame.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E9713E8C68E00507F78 /* polaroidFrame.png */; };
 		81531EEE13E8C68E00507F78 /* popover button (touch).png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E9813E8C68E00507F78 /* popover button (touch).png */; };
 		81531EEF13E8C68E00507F78 /* popover button.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E9913E8C68E00507F78 /* popover button.png */; };
 		81531EF113E8C68E00507F78 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81531E9C13E8C68E00507F78 /* RootViewController.m */; };
-		81531EF213E8C68E00507F78 /* rowBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E9E13E8C68E00507F78 /* rowBG.png */; };
 		81531EF313E8C68E00507F78 /* sample.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531E9F13E8C68E00507F78 /* sample.png */; };
 		81531EF413E8C68E00507F78 /* scissorsGlyph.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531EA013E8C68E00507F78 /* scissorsGlyph.png */; };
-		81531EF513E8C68E00507F78 /* sidebutton.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531EA113E8C68E00507F78 /* sidebutton.png */; };
 		81531EF713E8C68E00507F78 /* TextDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81531EA413E8C68E00507F78 /* TextDetailView.xib */; };
 		81531EF813E8C68E00507F78 /* TextDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81531EA613E8C68E00507F78 /* TextDetailViewController.m */; };
 		81531EF913E8C68E00507F78 /* textView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81531EA713E8C68E00507F78 /* textView.xib */; };
 		81531EFA13E8C68E00507F78 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 81531EA813E8C68E00507F78 /* triangle.png */; };
 		81531EFC13E8C9FF00507F78 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81531EFB13E8C9FF00507F78 /* CoreData.framework */; };
-		81531F0313E8CCB000507F78 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81531EFF13E8CCB000507F78 /* MainWindow.xib */; };
-		81531F0413E8CCB000507F78 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81531F0113E8CCB000507F78 /* RootViewController.xib */; };
 		81531F0613E8D4DD00507F78 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81531F0513E8D4DD00507F78 /* MessageUI.framework */; };
 		81531F0913E8D9D700507F78 /* ImageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81531F0813E8D9D700507F78 /* ImageDetailViewController.m */; };
+		818CF1DE13F03A0900661A7B /* wood.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 818CF1DD13F03A0900661A7B /* wood.jpeg */; };
+		818CF1E113F03F4A00661A7B /* LoginView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 818CF1E013F03F4900661A7B /* LoginView2.xib */; };
+		818CF1E313F050A300661A7B /* LoginView3.xib in Resources */ = {isa = PBXBuildFile; fileRef = 818CF1E213F050A300661A7B /* LoginView3.xib */; };
+		818CF1E513F050DE00661A7B /* Screen shot 2011-08-08 at 1.03.35 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = 818CF1E413F050DE00661A7B /* Screen shot 2011-08-08 at 1.03.35 PM.png */; };
+		818CF1ED13F44B4400661A7B /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = 818CF1EC13F44B4200661A7B /* loading.png */; };
+		818CF1EF13F4609700661A7B /* glyphicons_019_bin.png in Resources */ = {isa = PBXBuildFile; fileRef = 818CF1EE13F4609600661A7B /* glyphicons_019_bin.png */; };
+		818CF1F413F46B8400661A7B /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 818CF1F013F46B8300661A7B /* MainWindow.xib */; };
+		818CF1F513F46B8400661A7B /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 818CF1F213F46B8300661A7B /* RootViewController.xib */; };
+		81A9F874143B9D7A007CAA33 /* libFlurryAnalytics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A9F873143B9D7A007CAA33 /* libFlurryAnalytics.a */; };
+		81DF6DB713FF228500D12D31 /* imageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81DF6DB613FF228500D12D31 /* imageView.xib */; };
+		81DF6DB9140046CD00D12D31 /* instagram.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DF6DB8140046CC00D12D31 /* instagram.png */; };
+		81DF6DCB1403332A00D12D31 /* basics.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DF6DCA1403332A00D12D31 /* basics.png */; };
+		81DF6DD61403351400D12D31 /* images-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DF6DD51403351400D12D31 /* images-red.png */; };
+		81E32A7B13FB531A00534974 /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E32A7A13FB531A00534974 /* icon57.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		81531DF413E8C61B00507F78 /* cliplogr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = cliplogr.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		810255DE13F6137B0042329E /* Clip_Log_Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clip_Log_Icon.png; sourceTree = "<group>"; };
+		8102560613F647170042329E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		8102560813F6E5380042329E /* LoginView4.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView4.xib; sourceTree = "<group>"; };
+		8102560913F6E5380042329E /* Screenshot_LoginView4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Screenshot_LoginView4.png; sourceTree = "<group>"; };
+		81531DF413E8C61B00507F78 /* ClipLogr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipLogr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81531DF813E8C61B00507F78 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		81531DFA13E8C61B00507F78 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		81531DFC13E8C61B00507F78 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -71,8 +82,6 @@
 		81531E1213E8C68E00507F78 /* 12-eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "12-eye.png"; sourceTree = "<group>"; };
 		81531E1313E8C68E00507F78 /* 28-star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "28-star.png"; sourceTree = "<group>"; };
 		81531E1413E8C68E00507F78 /* 56-cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "56-cloud.png"; sourceTree = "<group>"; };
-		81531E1513E8C68E00507F78 /* backgroundCell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundCell.png; sourceTree = "<group>"; };
-		81531E1813E8C68E00507F78 /* blueFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueFrame.png; sourceTree = "<group>"; };
 		81531E6713E8C68E00507F78 /* cliplogr-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "cliplogr-Info.plist"; sourceTree = "<group>"; };
 		81531E6813E8C68E00507F78 /* cliplogr-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "cliplogr-Prefix.pch"; sourceTree = "<group>"; };
 		81531E6A13E8C68E00507F78 /* cliplogr.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = cliplogr.xcdatamodel; sourceTree = "<group>"; };
@@ -83,12 +92,8 @@
 		81531E7313E8C68E00507F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		81531E7413E8C68E00507F78 /* FileUploadController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUploadController.h; sourceTree = "<group>"; };
 		81531E7513E8C68E00507F78 /* FileUploadController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUploadController.m; sourceTree = "<group>"; };
-		81531E7613E8C68E00507F78 /* frame_v2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frame_v2.png; sourceTree = "<group>"; };
-		81531E7713E8C68E00507F78 /* frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frame.png; sourceTree = "<group>"; };
 		81531E7813E8C68E00507F78 /* glyphicons_152_new_window.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_152_new_window.png; sourceTree = "<group>"; };
 		81531E7913E8C68E00507F78 /* header.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = header.png; sourceTree = "<group>"; };
-		81531E7A13E8C68E00507F78 /* header(2).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header(2).png"; sourceTree = "<group>"; };
-		81531E7B13E8C68E00507F78 /* header(3).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "header(3).png"; sourceTree = "<group>"; };
 		81531E7C13E8C68E00507F78 /* ImageDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageDetailView.xib; sourceTree = "<group>"; };
 		81531E8213E8C68E00507F78 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
 		81531E8313E8C68E00507F78 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
@@ -106,26 +111,36 @@
 		81531E9113E8C68E00507F78 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		81531E9213E8C68E00507F78 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		81531E9413E8C68E00507F78 /* noise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noise.png; sourceTree = "<group>"; };
-		81531E9713E8C68E00507F78 /* polaroidFrame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = polaroidFrame.png; sourceTree = "<group>"; };
 		81531E9813E8C68E00507F78 /* popover button (touch).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popover button (touch).png"; sourceTree = "<group>"; };
 		81531E9913E8C68E00507F78 /* popover button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "popover button.png"; sourceTree = "<group>"; };
 		81531E9C13E8C68E00507F78 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		81531E9D13E8C68E00507F78 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		81531E9E13E8C68E00507F78 /* rowBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rowBG.png; sourceTree = "<group>"; };
 		81531E9F13E8C68E00507F78 /* sample.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sample.png; sourceTree = "<group>"; };
 		81531EA013E8C68E00507F78 /* scissorsGlyph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scissorsGlyph.png; sourceTree = "<group>"; };
-		81531EA113E8C68E00507F78 /* sidebutton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sidebutton.png; sourceTree = "<group>"; };
 		81531EA413E8C68E00507F78 /* TextDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextDetailView.xib; sourceTree = "<group>"; };
 		81531EA513E8C68E00507F78 /* TextDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextDetailViewController.h; sourceTree = "<group>"; };
 		81531EA613E8C68E00507F78 /* TextDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextDetailViewController.m; sourceTree = "<group>"; };
 		81531EA713E8C68E00507F78 /* textView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = textView.xib; sourceTree = "<group>"; };
 		81531EA813E8C68E00507F78 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
 		81531EFB13E8C9FF00507F78 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		81531F0013E8CCB000507F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "../../../../../Volumes/FLASH/Xcode/cliplogr xcode/cliplogr/en.lproj/MainWindow.xib"; sourceTree = "<group>"; };
-		81531F0213E8CCB000507F78 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "../../../../../Volumes/FLASH/Xcode/cliplogr xcode/cliplogr/en.lproj/RootViewController.xib"; sourceTree = "<group>"; };
 		81531F0513E8D4DD00507F78 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		81531F0713E8D9D700507F78 /* ImageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDetailViewController.h; sourceTree = "<group>"; };
 		81531F0813E8D9D700507F78 /* ImageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDetailViewController.m; sourceTree = "<group>"; };
+		818CF1DD13F03A0900661A7B /* wood.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wood.jpeg; sourceTree = "<group>"; };
+		818CF1E013F03F4900661A7B /* LoginView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView2.xib; sourceTree = "<group>"; };
+		818CF1E213F050A300661A7B /* LoginView3.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginView3.xib; sourceTree = "<group>"; };
+		818CF1E413F050DE00661A7B /* Screen shot 2011-08-08 at 1.03.35 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screen shot 2011-08-08 at 1.03.35 PM.png"; sourceTree = "<group>"; };
+		818CF1EC13F44B4200661A7B /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		818CF1EE13F4609600661A7B /* glyphicons_019_bin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_019_bin.png; sourceTree = "<group>"; };
+		818CF1F113F46B8300661A7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		818CF1F313F46B8400661A7B /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/RootViewController.xib; sourceTree = "<group>"; };
+		81A9F872143B9D7A007CAA33 /* FlurryAnalytics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlurryAnalytics.h; sourceTree = "<group>"; };
+		81A9F873143B9D7A007CAA33 /* libFlurryAnalytics.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurryAnalytics.a; sourceTree = "<group>"; };
+		81DF6DB613FF228500D12D31 /* imageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = imageView.xib; sourceTree = "<group>"; };
+		81DF6DB8140046CC00D12D31 /* instagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instagram.png; sourceTree = "<group>"; };
+		81DF6DCA1403332A00D12D31 /* basics.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = basics.png; sourceTree = "<group>"; };
+		81DF6DD51403351400D12D31 /* images-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "images-red.png"; sourceTree = "<group>"; };
+		81E32A7A13FB531A00534974 /* icon57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,11 +148,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8102560713F647170042329E /* AudioToolbox.framework in Frameworks */,
 				81531F0613E8D4DD00507F78 /* MessageUI.framework in Frameworks */,
 				81531EFC13E8C9FF00507F78 /* CoreData.framework in Frameworks */,
 				81531DF913E8C61B00507F78 /* UIKit.framework in Frameworks */,
 				81531DFB13E8C61B00507F78 /* Foundation.framework in Frameworks */,
 				81531DFD13E8C61B00507F78 /* CoreGraphics.framework in Frameworks */,
+				81A9F874143B9D7A007CAA33 /* libFlurryAnalytics.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +164,8 @@
 		81531DE913E8C61A00507F78 = {
 			isa = PBXGroup;
 			children = (
+				81A9F871143B9D7A007CAA33 /* FlurryAnalytics */,
+				8102560613F647170042329E /* AudioToolbox.framework */,
 				81531F0513E8D4DD00507F78 /* MessageUI.framework */,
 				81531EFB13E8C9FF00507F78 /* CoreData.framework */,
 				81531DFE13E8C61B00507F78 /* cliplogr */,
@@ -158,7 +177,7 @@
 		81531DF513E8C61B00507F78 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				81531DF413E8C61B00507F78 /* cliplogr.app */,
+				81531DF413E8C61B00507F78 /* ClipLogr.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -176,52 +195,25 @@
 		81531DFE13E8C61B00507F78 /* cliplogr */ = {
 			isa = PBXGroup;
 			children = (
-				81531E1213E8C68E00507F78 /* 12-eye.png */,
-				81531E1313E8C68E00507F78 /* 28-star.png */,
-				81531E1413E8C68E00507F78 /* 56-cloud.png */,
-				81531E1513E8C68E00507F78 /* backgroundCell.png */,
-				81531E1813E8C68E00507F78 /* blueFrame.png */,
+				81A9F878143BA0FA007CAA33 /* Glyphs */,
+				81A9F876143B9F82007CAA33 /* Images */,
+				81531E7113E8C68E00507F78 /* en.lproj */,
+				81A9F877143B9FE6007CAA33 /* NIBs */,
+				81531E8113E8C68E00507F78 /* JSON */,
 				81531E6713E8C68E00507F78 /* cliplogr-Info.plist */,
-				81531E6813E8C68E00507F78 /* cliplogr-Prefix.pch */,
 				81531E6913E8C68E00507F78 /* cliplogr.xcdatamodeld */,
 				81531E6B13E8C68E00507F78 /* cliplogrAppDelegate.h */,
 				81531E6C13E8C68E00507F78 /* cliplogrAppDelegate.m */,
-				81531E6F13E8C68E00507F78 /* dataCellFrame.png */,
-				81531E7013E8C68E00507F78 /* edit drawer.png */,
-				81531E7113E8C68E00507F78 /* en.lproj */,
 				81531E7413E8C68E00507F78 /* FileUploadController.h */,
 				81531E7513E8C68E00507F78 /* FileUploadController.m */,
-				81531E7613E8C68E00507F78 /* frame_v2.png */,
-				81531E7713E8C68E00507F78 /* frame.png */,
-				81531E7813E8C68E00507F78 /* glyphicons_152_new_window.png */,
-				81531E7913E8C68E00507F78 /* header.png */,
-				81531E7A13E8C68E00507F78 /* header(2).png */,
-				81531E7B13E8C68E00507F78 /* header(3).png */,
-				81531E7C13E8C68E00507F78 /* ImageDetailView.xib */,
-				81531E8113E8C68E00507F78 /* JSON */,
-				81531E8D13E8C68E00507F78 /* leather.png */,
-				81531EFF13E8CCB000507F78 /* MainWindow.xib */,
-				81531F0113E8CCB000507F78 /* RootViewController.xib */,
-				81531E9013E8C68E00507F78 /* LoginView.xib */,
 				81531E9113E8C68E00507F78 /* LoginViewController.h */,
 				81531E9213E8C68E00507F78 /* LoginViewController.m */,
-				81531E9413E8C68E00507F78 /* noise.png */,
-				81531E9713E8C68E00507F78 /* polaroidFrame.png */,
-				81531E9813E8C68E00507F78 /* popover button (touch).png */,
-				81531E9913E8C68E00507F78 /* popover button.png */,
 				81531F0713E8D9D700507F78 /* ImageDetailViewController.h */,
 				81531F0813E8D9D700507F78 /* ImageDetailViewController.m */,
-				81531E9C13E8C68E00507F78 /* RootViewController.m */,
 				81531E9D13E8C68E00507F78 /* RootViewController.h */,
-				81531E9E13E8C68E00507F78 /* rowBG.png */,
-				81531E9F13E8C68E00507F78 /* sample.png */,
-				81531EA013E8C68E00507F78 /* scissorsGlyph.png */,
-				81531EA113E8C68E00507F78 /* sidebutton.png */,
-				81531EA413E8C68E00507F78 /* TextDetailView.xib */,
+				81531E9C13E8C68E00507F78 /* RootViewController.m */,
 				81531EA513E8C68E00507F78 /* TextDetailViewController.h */,
 				81531EA613E8C68E00507F78 /* TextDetailViewController.m */,
-				81531EA713E8C68E00507F78 /* textView.xib */,
-				81531EA813E8C68E00507F78 /* triangle.png */,
 				81531DFF13E8C61B00507F78 /* Supporting Files */,
 			);
 			path = cliplogr;
@@ -230,6 +222,7 @@
 		81531DFF13E8C61B00507F78 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				81531E6813E8C68E00507F78 /* cliplogr-Prefix.pch */,
 				81531E0013E8C61B00507F78 /* cliplogr-Info.plist */,
 				81531E0113E8C61B00507F78 /* InfoPlist.strings */,
 				81531E0413E8C61B00507F78 /* cliplogr-Prefix.pch */,
@@ -264,6 +257,71 @@
 			path = JSON;
 			sourceTree = "<group>";
 		};
+		81A9F871143B9D7A007CAA33 /* FlurryAnalytics */ = {
+			isa = PBXGroup;
+			children = (
+				81A9F872143B9D7A007CAA33 /* FlurryAnalytics.h */,
+				81A9F873143B9D7A007CAA33 /* libFlurryAnalytics.a */,
+			);
+			name = FlurryAnalytics;
+			path = cliplogr/FlurryAnalytics;
+			sourceTree = "<group>";
+		};
+		81A9F876143B9F82007CAA33 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				81531E8D13E8C68E00507F78 /* leather.png */,
+				81531E6F13E8C68E00507F78 /* dataCellFrame.png */,
+				81531E7013E8C68E00507F78 /* edit drawer.png */,
+				81531EA813E8C68E00507F78 /* triangle.png */,
+				81E32A7A13FB531A00534974 /* icon57.png */,
+				81531E7913E8C68E00507F78 /* header.png */,
+				818CF1EC13F44B4200661A7B /* loading.png */,
+				810255DE13F6137B0042329E /* Clip_Log_Icon.png */,
+				818CF1DD13F03A0900661A7B /* wood.jpeg */,
+				81DF6DCA1403332A00D12D31 /* basics.png */,
+				81DF6DD51403351400D12D31 /* images-red.png */,
+				8102560913F6E5380042329E /* Screenshot_LoginView4.png */,
+				818CF1E413F050DE00661A7B /* Screen shot 2011-08-08 at 1.03.35 PM.png */,
+				81531E9413E8C68E00507F78 /* noise.png */,
+				81531E9813E8C68E00507F78 /* popover button (touch).png */,
+				81531E9913E8C68E00507F78 /* popover button.png */,
+				81DF6DB8140046CC00D12D31 /* instagram.png */,
+				81531E9F13E8C68E00507F78 /* sample.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		81A9F877143B9FE6007CAA33 /* NIBs */ = {
+			isa = PBXGroup;
+			children = (
+				81531E7C13E8C68E00507F78 /* ImageDetailView.xib */,
+				81531EA413E8C68E00507F78 /* TextDetailView.xib */,
+				81DF6DB613FF228500D12D31 /* imageView.xib */,
+				81531EA713E8C68E00507F78 /* textView.xib */,
+				818CF1F013F46B8300661A7B /* MainWindow.xib */,
+				818CF1F213F46B8300661A7B /* RootViewController.xib */,
+				81531E9013E8C68E00507F78 /* LoginView.xib */,
+				818CF1E013F03F4900661A7B /* LoginView2.xib */,
+				818CF1E213F050A300661A7B /* LoginView3.xib */,
+				8102560813F6E5380042329E /* LoginView4.xib */,
+			);
+			name = NIBs;
+			sourceTree = "<group>";
+		};
+		81A9F878143BA0FA007CAA33 /* Glyphs */ = {
+			isa = PBXGroup;
+			children = (
+				81531E1213E8C68E00507F78 /* 12-eye.png */,
+				81531E1313E8C68E00507F78 /* 28-star.png */,
+				81531E1413E8C68E00507F78 /* 56-cloud.png */,
+				81531E7813E8C68E00507F78 /* glyphicons_152_new_window.png */,
+				818CF1EE13F4609600661A7B /* glyphicons_019_bin.png */,
+				81531EA013E8C68E00507F78 /* scissorsGlyph.png */,
+			);
+			name = Glyphs;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -281,7 +339,7 @@
 			);
 			name = cliplogr;
 			productName = cliplogr;
-			productReference = 81531DF413E8C61B00507F78 /* cliplogr.app */;
+			productReference = 81531DF413E8C61B00507F78 /* ClipLogr.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -290,7 +348,8 @@
 		81531DEB13E8C61A00507F78 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				ORGANIZATIONNAME = "St. Timothy";
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = OmniVerse;
 			};
 			buildConfigurationList = 81531DEE13E8C61A00507F78 /* Build configuration list for PBXProject "cliplogr" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -318,34 +377,39 @@
 				81531EA913E8C68E00507F78 /* 12-eye.png in Resources */,
 				81531EAA13E8C68E00507F78 /* 28-star.png in Resources */,
 				81531EAB13E8C68E00507F78 /* 56-cloud.png in Resources */,
-				81531EAC13E8C68E00507F78 /* backgroundCell.png in Resources */,
-				81531EAE13E8C68E00507F78 /* blueFrame.png in Resources */,
 				81531ED013E8C68E00507F78 /* cliplogr-Info.plist in Resources */,
 				81531ED413E8C68E00507F78 /* dataCellFrame.png in Resources */,
 				81531ED513E8C68E00507F78 /* edit drawer.png in Resources */,
 				81531ED613E8C68E00507F78 /* InfoPlist.strings in Resources */,
-				81531ED813E8C68E00507F78 /* frame_v2.png in Resources */,
-				81531ED913E8C68E00507F78 /* frame.png in Resources */,
 				81531EDA13E8C68E00507F78 /* glyphicons_152_new_window.png in Resources */,
 				81531EDB13E8C68E00507F78 /* header.png in Resources */,
-				81531EDC13E8C68E00507F78 /* header(2).png in Resources */,
-				81531EDD13E8C68E00507F78 /* header(3).png in Resources */,
 				81531EDE13E8C68E00507F78 /* ImageDetailView.xib in Resources */,
 				81531EE613E8C68E00507F78 /* leather.png in Resources */,
 				81531EE813E8C68E00507F78 /* LoginView.xib in Resources */,
 				81531EEB13E8C68E00507F78 /* noise.png in Resources */,
-				81531EED13E8C68E00507F78 /* polaroidFrame.png in Resources */,
 				81531EEE13E8C68E00507F78 /* popover button (touch).png in Resources */,
 				81531EEF13E8C68E00507F78 /* popover button.png in Resources */,
-				81531EF213E8C68E00507F78 /* rowBG.png in Resources */,
 				81531EF313E8C68E00507F78 /* sample.png in Resources */,
 				81531EF413E8C68E00507F78 /* scissorsGlyph.png in Resources */,
-				81531EF513E8C68E00507F78 /* sidebutton.png in Resources */,
 				81531EF713E8C68E00507F78 /* TextDetailView.xib in Resources */,
 				81531EF913E8C68E00507F78 /* textView.xib in Resources */,
 				81531EFA13E8C68E00507F78 /* triangle.png in Resources */,
-				81531F0313E8CCB000507F78 /* MainWindow.xib in Resources */,
-				81531F0413E8CCB000507F78 /* RootViewController.xib in Resources */,
+				818CF1DE13F03A0900661A7B /* wood.jpeg in Resources */,
+				818CF1E113F03F4A00661A7B /* LoginView2.xib in Resources */,
+				818CF1E313F050A300661A7B /* LoginView3.xib in Resources */,
+				818CF1E513F050DE00661A7B /* Screen shot 2011-08-08 at 1.03.35 PM.png in Resources */,
+				818CF1ED13F44B4400661A7B /* loading.png in Resources */,
+				818CF1EF13F4609700661A7B /* glyphicons_019_bin.png in Resources */,
+				818CF1F413F46B8400661A7B /* MainWindow.xib in Resources */,
+				818CF1F513F46B8400661A7B /* RootViewController.xib in Resources */,
+				810255DF13F6137C0042329E /* Clip_Log_Icon.png in Resources */,
+				8102560A13F6E5380042329E /* LoginView4.xib in Resources */,
+				8102560B13F6E5380042329E /* Screenshot_LoginView4.png in Resources */,
+				81E32A7B13FB531A00534974 /* icon57.png in Resources */,
+				81DF6DB713FF228500D12D31 /* imageView.xib in Resources */,
+				81DF6DB9140046CD00D12D31 /* instagram.png in Resources */,
+				81DF6DCB1403332A00D12D31 /* basics.png in Resources */,
+				81DF6DD61403351400D12D31 /* images-red.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,18 +455,18 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		81531EFF13E8CCB000507F78 /* MainWindow.xib */ = {
+		818CF1F013F46B8300661A7B /* MainWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				81531F0013E8CCB000507F78 /* en */,
+				818CF1F113F46B8300661A7B /* en */,
 			);
 			name = MainWindow.xib;
 			sourceTree = "<group>";
 		};
-		81531F0113E8CCB000507F78 /* RootViewController.xib */ = {
+		818CF1F213F46B8300661A7B /* RootViewController.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				81531F0213E8CCB000507F78 /* en */,
+				818CF1F313F46B8400661A7B /* en */,
 			);
 			name = RootViewController.xib;
 			sourceTree = "<group>";
@@ -446,12 +510,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cliplogr/cliplogr-Prefix.pch";
 				INFOPLIST_FILE = "cliplogr/cliplogr-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)/usr/lib/system\"",
+					"\"$(SRCROOT)/cliplogr/FlurryAnalytics\"",
+				);
+				PRODUCT_NAME = ClipLogr;
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -460,11 +532,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Brenda Neary";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cliplogr/cliplogr-Prefix.pch";
 				INFOPLIST_FILE = "cliplogr/cliplogr-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SDKROOT)/usr/lib/system\"",
+					"\"$(SRCROOT)/cliplogr/FlurryAnalytics\"",
+				);
+				PRODUCT_NAME = ClipLogr;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "783C4903-A02D-4A73-AD35-BD0A9EDDA5CB";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -489,6 +571,7 @@
 				81531E1113E8C61B00507F78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

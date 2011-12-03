@@ -11,7 +11,8 @@
 
 @implementation TextDetailViewController
     
-    - (void)viewDidLoad {        
+    - (void)viewDidLoad { 
+        self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"wood.jpeg"]];
     }
 
     - (void)initWithLink: (NSString*)link andContents: (NSString*)content {
