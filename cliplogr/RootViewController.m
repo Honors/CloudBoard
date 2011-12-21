@@ -41,7 +41,7 @@ UIView *imgCacheNib;
     NSString *URLString = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://www.google.com"]];
     return ( URLString != NULL ) ? YES : NO;
 }
-
+/*
 + (void)playSoundCaf: (NSString *)name {
     NSURL *clickSound = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"delete" ofType:@"caf"]];
     SystemSoundID clickSoundID;
@@ -51,7 +51,7 @@ UIView *imgCacheNib;
     AudioServicesPlaySystemSound(clickSoundID);
     NSLog(@"Beep Bop");
     AudioServicesDisposeSystemSoundID(clickSoundID);
-}
+}*/
 
 - (void)deleteDelegate {
     //Get data before delete
@@ -635,8 +635,6 @@ UIView *imgCacheNib;
         [lvc release];
     }
     
-    [RootViewController playSoundCaf:@"startup"];        
-    
     //Set title for use with Back button
     self.title = @"Log";
     
@@ -709,10 +707,10 @@ UIView *imgCacheNib;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     int count = [[[self.fetchedResultsController sections] objectAtIndex:0] numberOfObjects];    
-    if( [indexPath row]>(count-2) && [indexPath row] < popOutSlot )
+    /*if( [indexPath row]>(count-2) && [indexPath row] < popOutSlot )
         return 20; 
     else if( [indexPath row]>(count-1) && [indexPath row] > popOutSlot )
-        return 25; 
+        return 25; */
     return [indexPath row] == popOutSlot ? 50 : 120;
 }
 
@@ -869,12 +867,12 @@ UIView *imgCacheNib;
     else if( [indexPath row]>(count-1) && [indexPath row] > popOutSlot )
         return [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"image"] autorelease];  
     NSManagedObject *managedObject = nil;    
-    if( [indexPath row] > popOutSlot ) {
+    if( [indexPath row] > popOutSlot && popOutSlot != -1 ) {
         managedObject = [[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:[indexPath row]-1 inSection:0 ]] retain];
     }
-    else if( [indexPath row] < popOutSlot ) {
+    else if( [indexPath row] < popOutSlot || popOutSlot == -1 ) {
          managedObject = [[self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:[indexPath row] inSection:0 ]] retain];
-    }
+    }    
     NSString *type;
     if( managedObject )
         type = [[managedObject valueForKey:@"type"] description];
