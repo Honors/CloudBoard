@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface MMMasterViewController : UITableViewController
-
+    @property (strong, nonatomic) NSMutableArray *_items;
+    - (void)parseData: (NSData *)data;
+    - (void)displayInsert;
+    - (void)fetchMoments;
+    - (void)saveMomentAtLocation: (NSString *)link withTitle: (NSString *)title andContent: (NSString *)content;
+    - (NSString *)uploadImageWithData: (NSData *)data;
 @end

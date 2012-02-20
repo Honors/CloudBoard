@@ -15,7 +15,8 @@
 @implementation MMDetailViewController
 
 @synthesize detailItem = _detailItem;
-@synthesize detailDescriptionLabel = _detailDescriptionLabel;
+@synthesize detailText;
+@synthesize detailImg;
 
 #pragma mark - Managing the detail item
 
@@ -33,8 +34,18 @@
 {
     // Update the user interface for the detail item.
 
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
+    if (self.detailItem && self.detailText) {
+        self.detailText.text = [self.detailItem valueForKey:@"content"];
+    } else if(self.detailItem && self.detailImg) {
+//        [self.detailImg setImage:[UIImage]]
+        NSArray *sysPaths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
+        NSString *docDirectory = [sysPaths objectAtIndex:0];
+        
+        //File path is slug
+        NSLog(@"Detail Item %@", self.detailItem);
+        NSString *slug = [self.detailItem valueForKey:@"link"];
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@.png", docDirectory, slug];    
+        [self.detailImg setImage:[UIImage imageWithContentsOfFile:filePath]];
     }
 }
 

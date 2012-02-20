@@ -10,8 +10,9 @@
 
 @interface MMDetailViewController : UIViewController
 
-@property (strong, nonatomic) id detailItem;
+@property (strong, nonatomic) NSDictionary *detailItem;
 
-@property (strong, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (strong, nonatomic) IBOutlet UITextView *detailText;
+@property (strong, nonatomic) IBOutlet UIImageView *detailImg;
 
 @end
