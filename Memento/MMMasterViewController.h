@@ -12,7 +12,7 @@
     @property (strong, nonatomic) NSMutableArray *_items;
     - (void)parseData: (NSData *)data;
     - (void)displayInsert;
-    - (void)fetchMoments;
+    - (void)fetchMoments: (NSString *)username;
     - (void)saveMomentAtLocation: (NSString *)link withTitle: (NSString *)title andContent: (NSString *)content;
     - (NSString *)uploadImageWithData: (NSData *)data;
 @end

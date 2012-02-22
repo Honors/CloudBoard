@@ -29,6 +29,6 @@
         if( [_mode isEqualToString:@"GET"] )
             [delegate parseData:respData];
         else
-            [delegate fetchMoments];
+            [delegate fetchMoments: @"matt"];
     }
 @end

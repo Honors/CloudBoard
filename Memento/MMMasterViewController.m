@@ -15,6 +15,7 @@
 #import "ASIHTTPRequest.h"
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
+#import "MMApiWrapper.h"
 
 @implementation MMMasterViewController
 @synthesize _items;
@@ -36,30 +37,16 @@
         type = @"text";
     }
     
-    NSURL *mneary = [[NSURL alloc] initWithString:@"http://mneary.info:3001/api/save/"];
-    NSMutableURLRequest *putJSON = [[NSMutableURLRequest alloc] initWithURL:mneary];
-    NSString *params = @"title=%@&username=%@&content=%@&timestamp=%@&link=%@&type=%@";
-    NSString *myParameters = [[NSString alloc] initWithFormat:params, 
-                                    title, 
-                                    @"matt", 
-                                    content, 
-                                    @"18-2-12", 
-                                    slug, 
-                                    type];
+    MMApiWrapper *mmaw = [[MMApiWrapper alloc] init];
+    NSString *params = [NSString stringWithFormat:@"title=%@&username=%@&content=%@&timestamp=%@&link=%@&type=%@", title, @"matt", content, @"18-2-12", slug, type];
     
-    [putJSON setHTTPMethod:@"POST"];
-    [putJSON setHTTPBody:[myParameters dataUsingEncoding:NSUTF8StringEncoding]];
-    MMApiLoader *mmal = [[MMApiLoader alloc] initWithMode: @"PUT"];
-    mmal.delegate = self;
-    
-    NSURLConnection *api_load = [[NSURLConnection alloc] initWithRequest:putJSON delegate:mmal];            
-    if( !api_load ) {
-        //throw error
+    if( ![mmaw performPostWithParams:params to:@"http://mneary.info:3001/api/save/" forDelegate:self] ) {
+        //handle error
     }
 }
-- (void)fetchMoments {
+- (void)fetchMoments: (NSString *)username {
     //Fetch JSON
-    NSURL *mneary = [[NSURL alloc] initWithString:@"http://mneary.info:3001/api/load/"];
+    NSURL *mneary = [[NSURL alloc] initWithString:[@"http://mneary.info:3001/api/load/" stringByAppendingString:username]];
     NSMutableURLRequest *getJSON = [[NSMutableURLRequest alloc] initWithURL:mneary];
     
     [getJSON setHTTPMethod:@"GET"];
@@ -68,7 +55,7 @@
     
     NSURLConnection *api_load = [[NSURLConnection alloc] initWithRequest:getJSON delegate:mmal]; 
     if( !api_load ) {
-        //throw error
+        //handle error
     }
 }
 - (void)displayInsert {
@@ -76,9 +63,7 @@
     MMInsertSheet *mmis = [[self storyboard] instantiateViewControllerWithIdentifier:@"InsertSheet"];
     mmis.delegate = self;
     [self.navigationController pushViewController:mmis animated:YES];
-//    [self.navigationController presentModalViewController:mmis animated:YES]; //Modal
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -120,13 +105,10 @@
 }
 
 - (NSString *)uploadImageWithData: (NSData *)data {
-    NSURL *url = [NSURL URLWithString:@"http://mneary.info:3008/api/upload/"];
     NSString *slug = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://mneary.info:3001/api/load/nextslug"]];
 
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request setData:data withFileName:[slug stringByAppendingString:@".png"] andContentType:@"image/png" forKey:@"photo"];    
-    [request setDelegate:self];
-    [request startAsynchronous];
+    MMApiWrapper *mmaw = [[MMApiWrapper alloc] init];
+    [mmaw uploadImageWithData:data to:slug];
     
     //Save locally
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
@@ -142,7 +124,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(displayInsert)]];
-    [self fetchMoments];
+    [self fetchMoments: @"matt"];
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
     self.tableView.tableFooterView = view;
@@ -173,55 +155,37 @@
     if( row == (_items ? [_items count] : 0) ) {
         UIImageView *rect = [[UIImageView alloc] initWithFrame:CGRectMake(40, 0, 280, 40)];
         [rect setImage:[UIImage imageNamed:@"corners.png"]];
-        [cell insertSubview:rect atIndex:0];                
-    } else {          
-        cell = [tableView dequeueReusableCellWithIdentifier:@"textCell"];                
-        UIView *rect;
-        if( _items ) {
-            NSString *type = [[_items objectAtIndex:row] valueForKey:@"type"];
-            if( [type isEqualToString:@"image"] ) {
-                cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
-                NSArray *subviews = cell.contentView.subviews;
-                
-                NSArray *sysPaths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
-                NSString *docDirectory = [sysPaths objectAtIndex:0];
-                
-                //File path is slug
-                NSString *slug = [[_items objectAtIndex:row] valueForKey:@"link"];
-                NSString *filePath = [NSString stringWithFormat:@"%@/%@.png", docDirectory, slug];    
-                BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];                
-                if( fileExists )
-                    [[subviews objectAtIndex:0] setImage:[[UIImage alloc] initWithContentsOfFile:filePath]];
-                else {
-                    //download file
-                    ASIHTTPRequest *request;
-                    request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://mneary.info:3001/public/%@.png", slug]]];
-                    [request setDownloadDestinationPath:[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", slug]]];
-
-                    NSLog(@"Downloading %@", slug);
-                    [request setCompletionBlock:^{
-                        NSLog(@"File Downloaded");
-                        [self.tableView reloadData];
-                    }];
-                    [request startAsynchronous];
-                }
-                
-                rect = [[UIView alloc] initWithFrame:CGRectMake(40, 0, 280, 202)];
-            }
-            else {
-                cell = [tableView dequeueReusableCellWithIdentifier:@"textCell"];
-                NSArray *subviews = cell.contentView.subviews;
-                [[subviews objectAtIndex:0] setText:[[_items objectAtIndex:row] valueForKey:@"content"]];
-                [[subviews objectAtIndex:1] setText:[[_items objectAtIndex:row] valueForKey:@"title"]];
-                
-                rect = [[UIView alloc] initWithFrame:CGRectMake(40, 0, 280, 102)];
-            }
-        }  
-        [rect setBackgroundColor:[UIColor whiteColor]];
-        [cell insertSubview:rect atIndex:0];
-    }
+        [cell insertSubview:rect atIndex:0];   
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+    }  
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //Only runs if if-statement is false
+    cell = [tableView dequeueReusableCellWithIdentifier:@"textCell"];                
+    UIView *rect;
+    NSString *type = [[_items objectAtIndex:row] valueForKey:@"type"];
+    if( [type isEqualToString:@"image"] ) {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
+        NSArray *subviews = cell.contentView.subviews;
+        
+        //Handle image
+        MMApiWrapper *mmaw = [[MMApiWrapper alloc] init];
+        [mmaw handleImage:[_items objectAtIndex:row] inTable:self.tableView forImage:[subviews objectAtIndex:0]];
+        
+        rect = [[UIView alloc] initWithFrame:CGRectMake(40, 0, 280, 202)];
+    }
+    else {
+        cell = [tableView dequeueReusableCellWithIdentifier:@"textCell"];
+        NSArray *subviews = cell.contentView.subviews;
+        [[subviews objectAtIndex:0] setText:[[_items objectAtIndex:row] valueForKey:@"content"]];
+        [[subviews objectAtIndex:1] setText:[[_items objectAtIndex:row] valueForKey:@"title"]];
+        
+        rect = [[UIView alloc] initWithFrame:CGRectMake(40, 0, 280, 102)];
+    }
+    [rect setBackgroundColor:[UIColor whiteColor]];
+    [cell insertSubview:rect atIndex:0];
+    
     return cell;
 }
 
