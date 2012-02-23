@@ -37,12 +37,10 @@
     if (self.detailItem && self.detailText) {
         self.detailText.text = [self.detailItem valueForKey:@"content"];
     } else if(self.detailItem && self.detailImg) {
-//        [self.detailImg setImage:[UIImage]]
         NSArray *sysPaths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
         NSString *docDirectory = [sysPaths objectAtIndex:0];
         
         //File path is slug
-        NSLog(@"Detail Item %@", self.detailItem);
         NSString *slug = [self.detailItem valueForKey:@"link"];
         NSString *filePath = [NSString stringWithFormat:@"%@/%@.png", docDirectory, slug];    
         [self.detailImg setImage:[UIImage imageWithContentsOfFile:filePath]];

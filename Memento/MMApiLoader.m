@@ -18,11 +18,6 @@
     }
     - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
     {
-     /*   if (connection == theConnection)
-        {
-            // do something with the data object.
-            [connectionSpecificDataObject appendData:data];
-        }*/
         [respData appendData:data];        
     }
     - (void)connectionDidFinishLoading:(NSURLConnection *)connection {

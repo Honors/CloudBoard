@@ -59,4 +59,14 @@
     NSURLConnection *api_load = [[NSURLConnection alloc] initWithRequest:putJSON delegate:mmal];
     return api_load;
 }
+- (void)writeUsername: (NSString *)username andPassword: (NSString *)password {
+    //Save to plist
+    NSDictionary *credits = [NSDictionary dictionaryWithObjectsAndKeys:username, @"username", password, @"password", nil];
+    
+    //Save locally
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *plistPath = [documentsDirectory stringByAppendingPathComponent:@"user_credits.plist"];
+    [credits writeToFile:plistPath atomically:YES];
+}
 @end

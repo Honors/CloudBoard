@@ -13,4 +13,5 @@
 - (void)handleImage: (NSDictionary *)item inTable: (UITableView *)table forImage: (UIImageView *)imageview;
 - (void)uploadImageWithData: (NSData *)data to: (NSString *)slug;
 - (NSURLConnection *)performPostWithParams: (NSString *)params to: (NSString *)path forDelegate: (MMMasterViewController *)delegate;
+- (void)writeUsername: (NSString *)username andPassword: (NSString *)password;
 @end

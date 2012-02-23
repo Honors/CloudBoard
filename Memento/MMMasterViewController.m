@@ -16,9 +16,31 @@
 #import "ASIFormDataRequest.h"
 #import "SBJson.h"
 #import "MMApiWrapper.h"
+#import "MMRegisterViewController.h"
 
 @implementation MMMasterViewController
 @synthesize _items;
+@synthesize username;
+@synthesize password;
+
+- (void)checkLogin {
+    NSArray *sysPaths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
+    NSString *docDirectory = [sysPaths objectAtIndex:0];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@.plist", docDirectory, @"user_credits"];    
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+    if( fileExists ) {
+        NSDictionary *credits = [NSDictionary dictionaryWithContentsOfFile:filePath];        
+        
+        NSLog(@"Reading credits from disk (%@,%@)", [credits objectForKey:@"username"], [credits objectForKey:@"password"]);
+        self.username = [credits objectForKey:@"username"];
+        self.password = [credits objectForKey:@"password"];
+    } else {
+        NSLog(@"Prompting user for credentials");
+        MMRegisterViewController *mmrvc = [[self storyboard] instantiateViewControllerWithIdentifier:@"registerView"];
+        mmrvc.delegate = self;
+        [self.navigationController pushViewController:mmrvc animated:YES];
+    } 
+}
 
 //JSON Handling
 - (void)parseData: (NSData *)data {
@@ -96,6 +118,9 @@
 {
     // Use when fetching text data
     NSString *responseString = [request responseString];
+    if( !responseString ) {
+        //handle error
+    }
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request
@@ -129,6 +154,8 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
     self.tableView.tableFooterView = view;
     [self.tableView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]]];
+
+    [self checkLogin];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -185,6 +212,7 @@
     }
     [rect setBackgroundColor:[UIColor whiteColor]];
     [cell insertSubview:rect atIndex:0];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
