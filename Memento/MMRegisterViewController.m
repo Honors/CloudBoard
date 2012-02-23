@@ -23,6 +23,7 @@
     email.delegate = self;
     
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]]];
+    [self.navigationItem setHidesBackButton:YES];
 }
 - (IBAction)loginClick {
     //Move to login view
