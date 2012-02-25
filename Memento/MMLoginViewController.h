@@ -12,6 +12,7 @@
 @interface MMLoginViewController : UIViewController <UITextFieldDelegate> {
     IBOutlet UITextField *username;
     IBOutlet UITextField *password;
+    IBOutlet UILabel *errorLabel;
 }
     - (IBAction)loginClick;
     @property (strong, nonatomic) MMRegisterViewController *delegate;
