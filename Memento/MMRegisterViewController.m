@@ -7,13 +7,20 @@
 //
 
 #import "MMLoginViewController.h"
+#import "MMSplashScreenViewController.h"
 #import "MMApiWrapper.h"
 
 @implementation MMRegisterViewController
 @synthesize delegate;
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if( [string isEqualToString:@"\n"] ) {
-        [textField resignFirstResponder];
+        if( [username isFirstResponder] ) {
+            [password becomeFirstResponder];
+        } else if( [password isFirstResponder] ) {
+            [email becomeFirstResponder];
+        } else {
+            [self registerClick];
+        }
     }
     return YES;
 }
@@ -22,8 +29,17 @@
     password.delegate = self;
     email.delegate = self;
     
+    [username becomeFirstResponder];
+    
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]]];
     [self.navigationItem setHidesBackButton:YES];
+    
+    MMSplashScreenViewController *mmssvc = [[delegate storyboard] instantiateViewControllerWithIdentifier:@"splashScreen"];
+    mmssvc.delegate = self;
+    
+    [self presentModalViewController:mmssvc animated:NO];
+    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Already User?" style:UIBarButtonItemStylePlain target:self action:@selector(loginClick)]];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Register" style:UIBarButtonItemStyleDone target:self action:@selector(registerClick)]];
 }
 - (IBAction)loginClick {
     //Move to login view
@@ -33,6 +49,7 @@
 }
 - (IBAction)registerClick { 
     [errorLabel setHidden:YES];
+    [mementoInfo setHidden:YES];
     
     //Check data entry
     

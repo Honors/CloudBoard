@@ -14,6 +14,7 @@
     IBOutlet UITextField *password;
     IBOutlet UITextField *email;
     IBOutlet UILabel *errorLabel;
+    IBOutlet UIView *mementoInfo;
 }
 @property (strong, nonatomic) MMMasterViewController *delegate;
 - (IBAction)registerClick;
