@@ -17,5 +17,5 @@
     - (void)fetchMoments: (NSString *)username;
     - (void)saveMomentAtLocation: (NSString *)link withTitle: (NSString *)title andContent: (NSString *)content;
 - (void)checkLogin;
-    - (NSString *)uploadImageWithData: (NSData *)data;
+- (NSString *)uploadImageWithData: (NSData *)data;
 @end

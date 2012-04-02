@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import "MMMasterViewController.h"
+#import "ASIHTTPRequest.h"
 
 @interface MMApiWrapper : NSObject
 - (void)handleImage: (NSDictionary *)item inTable: (UITableView *)table forImage: (UIImageView *)imageview;
 - (void)uploadImageWithData: (NSData *)data to: (NSString *)slug;
-- (NSURLConnection *)performPostWithParams: (NSString *)params to: (NSString *)path forDelegate: (MMMasterViewController *)delegate;
+- (NSURLConnection *)performPostWithParams: (NSString *)params to: (NSString *)path forDelegate: (MMMasterViewController *)delegate andReadData: (BOOL)read;
 - (void)writeUsername: (NSString *)username andPassword: (NSString *)password;
 @end

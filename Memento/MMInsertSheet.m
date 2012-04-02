@@ -17,7 +17,7 @@
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]]];        
         imagePushed = @"";
         [img setImage:[UIImage imageNamed:@"dragNdrop.png"]];
-        titleText.delegate = self;
+        titleText.delegate = self;                    
     }
     - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
         if( [string isEqualToString:@"\n"] ) {

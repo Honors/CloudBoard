@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MMMasterViewController.h"
 
-@interface MMInsertSheet : UIViewController <UITextFieldDelegate> {
+@interface MMInsertSheet : UIViewController <UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
     IBOutlet UIImageView *img;
     NSString *imagePushed;    
     IBOutlet UITextView *textview;
@@ -18,7 +18,7 @@
     @property (strong, nonatomic) MMMasterViewController *delegate;
     - (IBAction)dismissInsertSheet:(id)sender;
     - (IBAction)saveInsertSheet:(id)sender;    
-    - (void)pushImage: (NSData *)data;
+    - (void)pushImage: (NSData *)data withSmall: (UIImage *)small;
     - (IBAction)pickImage;
     - (IBAction)textEntry;
     - (void)setTextViewContent: (NSString *)text;

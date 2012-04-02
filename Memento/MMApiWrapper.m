@@ -25,18 +25,27 @@
         [imageview setImage:[UIImage imageWithContentsOfFile:filePath]];
     }
     else {
-        //download file
-        ASIHTTPRequest *request;
-        request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://mneary.info:3001/public/%@.png", slug]]];
-        [request setDownloadDestinationPath:[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", slug]]];
-        
-        NSLog(@"Downloading %@", slug);
-        [request setCompletionBlock:^{
-            NSLog(@"File Downloaded");
-            //Reload data
-            [table reloadData];
-        }];
-        [request startAsynchronous];
+        //download file                
+        dispatch_async( dispatch_get_main_queue(), ^{
+            ASIHTTPRequest *request;
+            request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://mneary.info:3001/public/%@.png", slug]]];
+
+            //Parallels ASIHTTPRequest#(void)requestStarted
+            request.delegate = nil;
+            [request setDownloadDestinationPath:[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", slug]]];        
+            
+            // running synchronously on the main thread now -- call the handler
+            NSLog(@"Downloading %@", slug);
+            [request setCompletionBlock:^{
+                NSLog(@"File Downloaded");
+                //Reload data
+                [table reloadData];
+            }];
+            [request setStartedBlock:^{
+                NSLog(@"XFer started");
+            }];
+            [request startAsynchronous];
+        });        
     }
 }
 - (void)uploadImageWithData:(NSData *)data to:(NSString *)slug {
@@ -46,17 +55,21 @@
     [request setDelegate:self];
     [request startAsynchronous];
 }
-- (NSURLConnection *)performPostWithParams: (NSString *)params to: (NSString *)path forDelegate: (MMMasterViewController *)delegate {
+- (NSURLConnection *)performPostWithParams: (NSString *)params to: (NSString *)path forDelegate: (MMMasterViewController *)delegate andReadData: (BOOL)read {
     NSURL *mneary = [[NSURL alloc] initWithString:path];
     NSMutableURLRequest *putJSON = [[NSMutableURLRequest alloc] initWithURL:mneary];
     
     
     [putJSON setHTTPMethod:@"POST"];
     [putJSON setHTTPBody:[params dataUsingEncoding:NSUTF8StringEncoding]];
-    MMApiLoader *mmal = [[MMApiLoader alloc] initWithMode: @"PUT"];
-    mmal.delegate = delegate;
-    
-    NSURLConnection *api_load = [[NSURLConnection alloc] initWithRequest:putJSON delegate:mmal];
+    MMApiLoader *mmal = [[MMApiLoader alloc] initWithMode:read?@"GET":@"PUT"];
+    if( delegate ) {
+        mmal.delegate = delegate;
+        
+        NSURLConnection *api_load = [[NSURLConnection alloc] initWithRequest:putJSON delegate:mmal];
+        return api_load;
+    }
+    NSURLConnection *api_load = [[NSURLConnection alloc] initWithRequest:putJSON delegate:nil];
     return api_load;
 }
 - (void)writeUsername: (NSString *)username andPassword: (NSString *)password {
