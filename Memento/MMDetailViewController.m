@@ -45,6 +45,10 @@
         NSString *filePath = [NSString stringWithFormat:@"%@/%@.png", docDirectory, slug];    
         [self.detailImg setImage:[UIImage imageWithContentsOfFile:filePath]];
     }
+    
+    if( self.detailItem ) {
+        self.navigationItem.title = [self.detailItem valueForKey:@"title"];
+    }
 }
 
 - (void)didReceiveMemoryWarning

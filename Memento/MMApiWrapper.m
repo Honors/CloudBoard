@@ -28,7 +28,7 @@
         //download file                
         dispatch_async( dispatch_get_main_queue(), ^{
             ASIHTTPRequest *request;
-            request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://mneary.info:3001/public/%@.png", slug]]];
+            request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://mementosapp.com/public/image/png/%@.png", slug]]];
 
             //Parallels ASIHTTPRequest#(void)requestStarted
             request.delegate = nil;
