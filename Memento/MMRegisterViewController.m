@@ -11,7 +11,7 @@
 #import "MMApiWrapper.h"
 
 @implementation MMRegisterViewController
-@synthesize delegate;
+@synthesize delegate, shouldImmediatelyReturn;
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if( [string isEqualToString:@"\n"] ) {
         if( [username isFirstResponder] ) {
@@ -27,7 +27,7 @@
 - (void)viewDidLoad {
     username.delegate = self;
     password.delegate = self;
-    email.delegate = self;
+    email.delegate = self;            
     
     [username becomeFirstResponder];
     
@@ -54,7 +54,7 @@
     //Check data entry
     
     //Check name availability
-    NSString *isUser = [NSString stringWithContentsOfURL:[NSURL URLWithString:[@"http://mneary.info:3001/api/load/is_user/" stringByAppendingString:username.text]]];
+    NSString *isUser = [NSString stringWithContentsOfURL:[NSURL URLWithString:[@"http://mementosapp.com/api/load/is_user/" stringByAppendingString:username.text]]];
     NSLog(@"is user: %@", isUser);
     BOOL userExists = ([isUser rangeOfString:@"false"].location == NSNotFound);
     if( userExists || [username.text isEqualToString:@""] ) {
@@ -78,12 +78,13 @@
     
     //Communicate with API
     MMApiWrapper *mmaw = [[MMApiWrapper alloc] init];
-    [mmaw performPostWithParams:[NSString stringWithFormat:@"password=%@&email=%@", password.text, email.text] to:[NSString stringWithFormat:@"http://mneary.info:3001/api/new_user/%@", username.text] forDelegate:nil andReadData:NO];
+    [mmaw performPostWithParams:[NSString stringWithFormat:@"password=%@&email=%@", password.text, email.text] to:[NSString stringWithFormat:@"http://mementosapp.com/api/new_user/%@", username.text] forDelegate:nil andReadData:NO];
     
     //Save credentials    
     [mmaw writeUsername:username.text andPassword:password.text];
     delegate.username = username.text;
     delegate.password = password.text;
+    [delegate checkLogin];
     
     [delegate.navigationController popToViewController:delegate animated:YES];        
 }

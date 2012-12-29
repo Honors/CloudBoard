@@ -17,6 +17,7 @@
     IBOutlet UIView *mementoInfo;
 }
 @property (strong, nonatomic) MMMasterViewController *delegate;
+@property BOOL shouldImmediatelyReturn;
 - (IBAction)registerClick;
 - (IBAction)loginClick;
 @end

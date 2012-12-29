@@ -24,6 +24,6 @@
         if( [_mode isEqualToString:@"GET"] )
             [delegate parseData:respData];
         else
-            [delegate fetchMoments: @"matt"];
+            [delegate fetchMoments: delegate.username];
     }
 @end

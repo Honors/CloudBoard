@@ -17,7 +17,6 @@
     [load setProgress:[load progress]+.04];
 }
 - (void)recurseLoad {
-    NSLog(@"Progress: %f", [load progress]);
     if( [load progress] >= .98 ) {
         [self popSelf];
     } else {

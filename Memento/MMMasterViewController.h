@@ -7,15 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PullRefreshTableViewController.h"
 
-@interface MMMasterViewController : UITableViewController
-    @property (strong, nonatomic) NSMutableArray *_items;
-    @property (strong, nonatomic) NSString *username;
-    @property (strong, nonatomic) NSString *password;
-    - (void)parseData: (NSData *)data;
-    - (void)displayInsert;
-    - (void)fetchMoments: (NSString *)username;
-    - (void)saveMomentAtLocation: (NSString *)link withTitle: (NSString *)title andContent: (NSString *)content;
+@interface MMMasterViewController : PullRefreshTableViewController <UIDocumentInteractionControllerDelegate> {
+    UIViewController *qlvc;
+}
+
+@property (strong, nonatomic) NSMutableArray *_items;
+@property (strong, nonatomic) NSString *username;
+@property (strong, nonatomic) NSString *password;
+@property UIDocumentInteractionController *UIDIC;
+
+- (void)parseData: (NSData *)data;
+- (void)displayInsert;
+- (void)fetchMoments: (NSString *)username;
+- (void)saveMomentAtLocation: (NSString *)link withTitle: (NSString *)title andContent: (NSString *)content withExtension: (NSString *)ext;
 - (void)checkLogin;
-- (NSString *)uploadImageWithData: (NSData *)data;
+- (NSString *)uploadImageWithData: (NSData *)data ofType: (NSString *)type;
 @end

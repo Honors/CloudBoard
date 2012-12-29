@@ -30,6 +30,10 @@
     }
 }
 
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
+    return [sv.subviews objectAtIndex:0];
+}
+
 - (void)configureView
 {
     // Update the user interface for the detail item.

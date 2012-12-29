@@ -14,6 +14,7 @@
     NSString *imagePushed;    
     IBOutlet UITextView *textview;
     IBOutlet UITextField *titleText;
+    NSString *pushedUTIExt;
 }
     @property (strong, nonatomic) MMMasterViewController *delegate;
     - (IBAction)dismissInsertSheet:(id)sender;

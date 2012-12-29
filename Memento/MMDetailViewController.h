@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MMDetailViewController : UIViewController
+@interface MMDetailViewController : UIViewController {
+    IBOutlet UIScrollView *sv;
+}
 
 @property (strong, nonatomic) NSDictionary *detailItem;
 

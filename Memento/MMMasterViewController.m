@@ -17,27 +17,49 @@
 #import "MMRegisterViewController.h"
 
 @implementation MMMasterViewController
-@synthesize _items;
-@synthesize username;
-@synthesize password;
+@synthesize _items, username, password, UIDIC;
+
+// View sheet
+- (UIViewController *)documentInteractionControllerViewControllerForPreview:(UIDocumentInteractionController *)controller {
+    return qlvc;
+}
+- (void)documentInteractionControllerDidEndPreview:(UIDocumentInteractionController *)controller {
+    // show navigation bar again
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    // get rid of modified view
+    [qlvc.view removeFromSuperview];
+    
+    // make another
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [self.view insertSubview:v atIndex:[[self.view subviews] count]];
+    qlvc.view = v;
+}
+
+- (void)refresh {
+    [self fetchMoments:username];
+}
 
 - (void)checkLogin {
     NSArray *sysPaths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
     NSString *docDirectory = [sysPaths objectAtIndex:0];
     NSString *filePath = [NSString stringWithFormat:@"%@/%@.plist", docDirectory, @"user_credits"];    
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];        
+    
     if( fileExists ) {
         NSDictionary *credits = [NSDictionary dictionaryWithContentsOfFile:filePath];        
         
         NSLog(@"Reading credits from disk (%@,%@)", [credits objectForKey:@"username"], [credits objectForKey:@"password"]);
         self.username = [credits objectForKey:@"username"];
         self.password = [credits objectForKey:@"password"];
+        [self fetchMoments:self.username];
     } else {
         NSLog(@"Prompting user for credentials");
         MMRegisterViewController *mmrvc = [[self storyboard] instantiateViewControllerWithIdentifier:@"registerView"];
+        mmrvc.title = @"CloudBoard";
         mmrvc.delegate = self;
         [self.navigationController pushViewController:mmrvc animated:YES];
-    } 
+    }
 }
 
 //JSON Handling
@@ -47,30 +69,33 @@
     NSMutableArray *items = [parse objectWithString:json];
     _items = [NSMutableArray arrayWithArray:[[items reverseObjectEnumerator] allObjects]];
     
-    [self.tableView reloadData];
+    [self stopLoading];
+    [self.tableView reloadData];    
 }
-- (void)saveMomentAtLocation: (NSString *)link withTitle: (NSString *)title andContent: (NSString *)content {
+- (void)saveMomentAtLocation: (NSString *)link withTitle: (NSString *)title andContent: (NSString *)content withExtension: (NSString *)ext {
     NSString *slug = link;
     NSString *type = @"image";
     if( [slug isEqualToString:@""] ) {
-        slug = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://mneary.info:3001/api/load/nextslug"]];
+        slug = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://mementosapp.com/api/load/nextslug"]];
         type = @"text";
+        ext = @"";
     }        
     
     MMApiWrapper *mmaw = [[MMApiWrapper alloc] init];
     
     NSDate *now = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
     long long newPassed = [now timeIntervalSince1970];
-    NSString *params = [NSString stringWithFormat:@"title=%@&username=%@&content=%@&timestamp=%@&link=%@&type=%@", title, username, content, [NSString stringWithFormat:@"%lld",newPassed], slug, type];
+    NSString *params = [NSString stringWithFormat:@"title=%@&username=%@&content=%@&timestamp=%@&link=%@&type=%@&extension=%@", title, username, content, [NSString stringWithFormat:@"%lld",newPassed], slug, type, ext];
     
-    if( ![mmaw performPostWithParams:params to:@"http://mneary.info:3001/api/save/" forDelegate:self andReadData:NO] ) {
+    if( ![mmaw performPostWithParams:params to:@"http://mementosapp.com/api/save/" forDelegate:self andReadData:NO] ) {
+        
         //handle error
     }
 }
 - (void)fetchMoments: (NSString *)username {
     //Fetch JSON
-    NSLog(@"Fetching...");
-    NSURL *mneary = [[NSURL alloc] initWithString:[@"http://mneary.info:3001/api/load/" stringByAppendingString:username]];
+    NSLog(@"Fetching... %@", [@"http://mementosapp.com/api/load/" stringByAppendingString:username]);
+    NSURL *mneary = [[NSURL alloc] initWithString:[@"http://mementosapp.com/api/load/" stringByAppendingString:username]];
     NSMutableURLRequest *getJSON = [[NSMutableURLRequest alloc] initWithURL:mneary];
     
     [getJSON setHTTPMethod:@"GET"];
@@ -103,15 +128,18 @@
     }
     
     int row = [indexPath row];    
-    if( [[[_items objectAtIndex:row] valueForKey:@"type"] isEqualToString:@"image"] ) {
-        MMDetailViewController *mmdvc = [[self storyboard] instantiateViewControllerWithIdentifier:@"imageDetail"];            
-        mmdvc.detailItem = [_items objectAtIndex:row];
-        [self.navigationController pushViewController:mmdvc animated:YES];
-    } else {
-        MMDetailViewController *mmdvc = [[self storyboard] instantiateViewControllerWithIdentifier:@"DetailView"];            
-        mmdvc.detailItem = [_items objectAtIndex:row];
-        [self.navigationController pushViewController:mmdvc animated:YES];          
-    }
+    
+    MMApiWrapper *mmaw = [[MMApiWrapper alloc] init];
+    
+    // hide current navigation bar
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    NSString *type = [[_items objectAtIndex:row] valueForKey:@"type"];
+    UIDIC = [[UIDocumentInteractionController alloc] init];
+    UIDIC.URL = [NSURL fileURLWithPath:[mmaw filePathForItem:[_items objectAtIndex:row]]];
+    UIDIC.UTI = [type isEqualToString:@"text"]?@"public.plain-text":@"public.jpeg";
+    UIDIC.delegate = self;
+    [UIDIC presentPreviewAnimated:YES];
 }
 
 #pragma mark - View lifecycle
@@ -131,19 +159,19 @@
     NSLog(@"Error %@", error);
 }
 
-- (NSString *)uploadImageWithData: (NSData *)data {
-    NSString *slug = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://mneary.info:3001/api/load/nextslug"]];
+- (NSString *)uploadImageWithData: (NSData *)data ofType: (NSString *)type {
+    NSString *slug = [NSString stringWithContentsOfURL:[NSURL URLWithString:@"http://mementosapp.com/api/load/nextslug"]];
 
     MMApiWrapper *mmaw = [[MMApiWrapper alloc] init];
-    [mmaw uploadImageWithData:data to:slug];
+    [mmaw uploadImageWithData:data ofType:type to:slug];
     
-    //Save locally
+    // Save locally
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:[slug stringByAppendingString:@".png"]];
+    NSString *savedImagePath = [documentsDirectory stringByAppendingPathComponent:[slug stringByAppendingString:type]];
     [data writeToFile:savedImagePath atomically:YES];      
     
-    //Save thumbnail
+    // TODO: Save thumbnail
     
     return slug;
 }
@@ -164,10 +192,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    // insert QuickLook View
+    qlvc = [[UIViewController alloc] init];
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [self.view insertSubview:v atIndex:[[self.view subviews] count]];
+    qlvc.view = v;
+ 
+    NSLog(@"Styling...");
+    // Do any additional setup after loading the view, typically from a nib.
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(displayInsert)]];
-    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(logout)]];
-    [self fetchMoments: @"matt"];
+    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(logout)]];           	  
     
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
     self.tableView.tableFooterView = view;
@@ -190,8 +225,9 @@
     return 40;
 }
 
-- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {    
-    return _items ? [_items count]+1 : 1;
+- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // if want additional row: _items ? [_items count]+1 : 1
+    return _items ? [_items count] : 0;
 }
 - (NSString *)monthAbbr: (NSInteger)integer {
     if( integer == 1 ) return @"JAN";
@@ -211,6 +247,8 @@
     int row = [indexPath row];          
     UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
     
+    /*
+     Stying of additional row:
     if( row == (_items ? [_items count] : 0) ) {
         UIImageView *rect = [[UIImageView alloc] initWithFrame:CGRectMake(40, 0, 280, 40)];
         [rect setImage:[UIImage imageNamed:@"corners.png"]];
@@ -219,6 +257,7 @@
         
         return cell;
     }  
+     */
     
     //Only runs if if-statement is false
     cell = [tableView dequeueReusableCellWithIdentifier:@"textCell"];                
@@ -241,15 +280,17 @@
         NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:oldTimeStamp];        
         
         //Set Date
-        [[subviews objectAtIndex:3] setText:[self monthAbbr:[components month]]];
-        [[subviews objectAtIndex:4] setText:[NSString stringWithFormat:@"%d",[components day]]];
+        [[subviews objectAtIndex:2] setText:[self monthAbbr:[components month]]];
+        [[subviews objectAtIndex:3] setText:[NSString stringWithFormat:@"%d",[components day]]];
         
-        rect = [[UIView alloc] initWithFrame:CGRectMake(40, 0, 280, 202)];
+        //rect = [[UIView alloc] initWithFrame:CGRectMake(40, 0, 280, 202)];
+        rect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 202)];
     }
     else {
         NSArray *subviews = cell.contentView.subviews;
         [[subviews objectAtIndex:0] setText:[[_items objectAtIndex:row] valueForKey:@"content"]];
-        [[subviews objectAtIndex:1] setText:[[_items objectAtIndex:row] valueForKey:@"title"]];
+        // Titles less significant in Clipboard Manager
+        //[[subviews objectAtIndex:1] setText:[[_items objectAtIndex:row] valueForKey:@"title"]];
         
         NSString *timestamp = [[_items objectAtIndex:row] valueForKey:@"timestamp"];
         
@@ -260,10 +301,11 @@
         NSDateComponents *components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit fromDate:oldTimeStamp];        
         
         //Set Date
-        [[subviews objectAtIndex:4] setText:[self monthAbbr:[components month]]];
-        [[subviews objectAtIndex:5] setText:[NSString stringWithFormat:@"%d",[components day]]];
+        [[subviews objectAtIndex:2] setText:[self monthAbbr:[components month]]];
+        [[subviews objectAtIndex:3] setText:[NSString stringWithFormat:@"%d",[components day]]];
         
-        rect = [[UIView alloc] initWithFrame:CGRectMake(40, 0, 280, 102)];
+        //rect = [[UIView alloc] initWithFrame:CGRectMake(40, 0, 280, 102)];
+        rect = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 102)];
     }
     [rect setBackgroundColor:[UIColor whiteColor]];
     [cell insertSubview:rect atIndex:0];

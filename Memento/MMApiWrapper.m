@@ -12,13 +12,26 @@
 #import "MMApiLoader.h"
 
 @implementation MMApiWrapper
-- (void)handleImage: (NSDictionary *)item inTable: (UITableView *)table forImage: (UIImageView *)imageview {
+- (NSString *)filePathForItem: (NSDictionary *)item {
     NSArray *sysPaths = NSSearchPathForDirectoriesInDomains( NSDocumentDirectory, NSUserDomainMask, YES );
     NSString *docDirectory = [sysPaths objectAtIndex:0];
     
     //File path is slug
     NSString *slug = [item valueForKey:@"link"];
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@.png", docDirectory, slug];    
+    if( [[item valueForKey:@"type"] isEqualToString:@"image"] ) {
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@%@", docDirectory, slug, [item valueForKey:@"extension"]];
+        return filePath;
+    } else {
+        NSString *filePath = [NSString stringWithFormat:@"%@/%@.txt", docDirectory, slug];
+        [[[item valueForKey:@"content"] dataUsingEncoding:NSUTF8StringEncoding] writeToFile:filePath atomically:NO];
+        return filePath;
+    }
+}
+- (void)handleImage: (NSDictionary *)item inTable: (UITableView *)table forImage: (UIImageView *)imageview {
+    NSString *slug = [item valueForKey:@"link"];
+    NSLog(@"Ext: %@", [item valueForKey:@"extension"]);
+    // check for file existence
+    NSString *filePath = [self filePathForItem:item];
     BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:filePath];                
     if( fileExists ) {
         //Set image
@@ -28,11 +41,14 @@
         //download file                
         dispatch_async( dispatch_get_main_queue(), ^{
             ASIHTTPRequest *request;
-            request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://mementosapp.com/public/image/png/%@.png", slug]]];
+            
+            // TODO: use file extension saved in database
+            NSString *imagePath = [NSString stringWithFormat:@"http://mementosapp.com/public/image/png/%@%@", slug, [item valueForKey:@"extension"]];
+            request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:imagePath]];
 
             //Parallels ASIHTTPRequest#(void)requestStarted
             request.delegate = nil;
-            [request setDownloadDestinationPath:[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png", slug]]];        
+            [request setDownloadDestinationPath:[[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@%@", slug, [item valueForKey:@"extension"]]]];
             
             // running synchronously on the main thread now -- call the handler
             NSLog(@"Downloading %@", slug);
@@ -45,13 +61,14 @@
                 NSLog(@"XFer started");
             }];
             [request startAsynchronous];
-        });        
+        });
     }
 }
-- (void)uploadImageWithData:(NSData *)data to:(NSString *)slug {
-    NSURL *url = [NSURL URLWithString:@"http://mneary.info:3008/api/upload/"];
+- (void)uploadImageWithData: (NSData *)data ofType: (NSString *)type to: (NSString *)slug {
+    NSURL *url = [NSURL URLWithString:@"http://mementosapp.com:3008/api/upload/"];
     ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-    [request setData:data withFileName:[slug stringByAppendingString:@".png"] andContentType:@"image/png" forKey:@"photo"];    
+    NSString *contentType = [[NSString stringWithFormat:@"image%@", type] stringByReplacingOccurrencesOfString:@"." withString:@"/"];
+    [request setData:data withFileName:[slug stringByAppendingString:type] andContentType:contentType forKey:@"photo"];
     [request setDelegate:self];
     [request startAsynchronous];
 }

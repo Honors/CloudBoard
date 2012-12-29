@@ -16,8 +16,8 @@
     - (void)viewDidLoad {
         [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg.png"]]];        
         imagePushed = @"";
-        [img setImage:[UIImage imageNamed:@"dragNdrop.png"]];
-        titleText.delegate = self;                    
+        titleText.delegate = self;
+        [self getClipboard];
     }
     - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
         if( [string isEqualToString:@"\n"] ) {
@@ -32,16 +32,25 @@
     - (void)clearImage {
         [img setImage:nil];
     }
-    - (IBAction)getClipboard {
+    - (void)getClipboard {
         UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
         
         [self clearImage];
         if( pasteboard.string ) {
             NSString *string = pasteboard.string;
             [textview setText:string];
-        } else if( pasteboard.image ) {
-            UIImage *image = [pasteboard.images objectAtIndex:0];
-            [img setImage:image];
+        } else if( pasteboard.image ) {            
+            NSString *UTI = @"";
+            NSString *imageType = @"";
+            for( NSString *type in [pasteboard pasteboardTypes] ) {
+                if( [type isEqualToString:@"public.png"] ) { UTI = type; imageType = @".png"; break; }
+                else if( [type isEqualToString:@"public.jpeg"] ) { UTI = type; imageType = @".jpeg"; break; }
+                else if( [type isEqualToString:@"public.gif"] ) { UTI = type; imageType = @".gif"; break; }
+            }
+            if( ![UTI isEqualToString:@""] ) {
+                pushedUTIExt = imageType;
+                [self pushImage:[pasteboard dataForPasteboardType:UTI] ofType:imageType];
+            }
         } else if( pasteboard.URL ) {
             NSURL *url = [NSString stringWithFormat:@"%@",pasteboard.URL];
             [textview setText:url];
@@ -66,10 +75,10 @@
         //[self presentModalViewController:mmte animated:YES];
         [self.navigationController pushViewController:mmte animated:YES];
     }
-    - (void)pushImage: (NSData *)data {
+    - (void)pushImage: (NSData *)data ofType: (NSString *)type {
         //Upload image before data is entered
         [img setImage:[UIImage imageWithData:data]];
-        imagePushed = [delegate uploadImageWithData:data];
+        imagePushed = [delegate uploadImageWithData:data ofType: type];
     }
     - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
         NSURL *referenceURL = [info objectForKey:UIImagePickerControllerReferenceURL];
@@ -92,7 +101,7 @@
                     if (bytes == [rep size]) {
                         //NSData will be used in uploading
                         defaultRepresentationData = [NSData dataWithBytes:buffer length:bytes];
-                        [self pushImage:defaultRepresentationData];
+                        [self pushImage:defaultRepresentationData ofType:@".png"];
                     } else {
                         //handle error in data writing
                     }
@@ -119,7 +128,7 @@
     - (IBAction)saveInsertSheet:(id)sender {                
         //Save item
         //This is not the same controller so it cant update the table 
-        [delegate saveMomentAtLocation:imagePushed withTitle:titleText.text andContent:textview.text];
+        [delegate saveMomentAtLocation:imagePushed withTitle:titleText.text andContent:textview.text withExtension:pushedUTIExt];
         
         //Exit
         [delegate.navigationController popViewControllerAnimated:YES];

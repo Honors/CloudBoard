@@ -49,6 +49,6 @@
 - (IBAction)loginClick {
     //Save credentials
     MMApiWrapper *mmaw = [[MMApiWrapper alloc] init];
-    [mmaw performPostWithParams:[NSString stringWithFormat:@"username=%@&password=%@", username.text, password.text] to:@"http://mneary.info:3001/api/load/is_user_key_pair/" forDelegate:self andReadData:YES];
+    [mmaw performPostWithParams:[NSString stringWithFormat:@"username=%@&password=%@", username.text, password.text] to:@"http://mementosapp.com/api/load/is_user_key_pair/" forDelegate:self andReadData:YES];
 }
 @end

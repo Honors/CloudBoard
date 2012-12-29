@@ -12,7 +12,8 @@
 
 @interface MMApiWrapper : NSObject
 - (void)handleImage: (NSDictionary *)item inTable: (UITableView *)table forImage: (UIImageView *)imageview;
-- (void)uploadImageWithData: (NSData *)data to: (NSString *)slug;
+- (void)uploadImageWithData: (NSData *)data ofType: (NSString *)type to: (NSString *)slug;
 - (NSURLConnection *)performPostWithParams: (NSString *)params to: (NSString *)path forDelegate: (MMMasterViewController *)delegate andReadData: (BOOL)read;
 - (void)writeUsername: (NSString *)username andPassword: (NSString *)password;
+- (NSString *)filePathForItem: (NSDictionary *)item;
 @end
